@@ -1366,7 +1366,7 @@ export default {
         this.viewer.camera.setView({
           // fromDegrees()方法，将经纬度和高程转换为世界坐标
           //destination: Cesium.Rectangle.fromDegrees(113.0149404672,30.0734572226,113.9181165740,30.9597805439),//west, south, east, north
-          destination: Cesium.Cartesian3.fromDegrees(120.2754, 23.7499, 1000000),
+          destination: Cesium.Cartesian3.fromDegrees(113.6187, 34.7508, 171240),
           orientation: {
             // 指向
             heading: Cesium.Math.toRadians(0, 0),
