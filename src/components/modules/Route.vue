@@ -1,77 +1,42 @@
 <template>
   <div>
-    <a-drawer
-      :title="$t('shortestpathquery')"
-      :width="600"
-      :visible="visible"
-      :bodyStyle="{ paddingBottom: '80px' }"
-      :maskClosable="false"
-      :mask="false"
-      :placement="'right'"
-      :wrapStyle="{ paddingTop: '55px' }"
-      @close="onClose"
-    >
+    <a-drawer :title="$t('shortestpathquery')" :width="600" :visible="visible" :bodyStyle="{ paddingBottom: '80px' }"
+      :maskClosable="false" :mask="false" :placement="'right'" :wrapStyle="{ paddingTop: '55px' }" @close="onClose">
       <a-form-model ref="ruleForm" :model="form" :rules="rules" :label-col="labelCol" :wrapper-col="wrapperCol">
         <a-form-model-item :label="$t('selectdisasterevent')" prop="disasterEvent" has-feedback>
-          <a-select
-            v-model="form.disasterEvent"
-            :placeholder="$t('pleaseselectdisasterevent')"
-            :allowClear="true"
-            @select="onSelect"
-          >
+          <a-select v-model="form.disasterEvent" :placeholder="$t('pleaseselectdisasterevent')" :allowClear="true"
+            @select="onSelect">
             <a-select-option v-for="disaster in disasters" :key="disaster.id">
               {{ disaster.name }}
             </a-select-option>
           </a-select>
         </a-form-model-item>
-        <a-form-model-item :wrapper-col="{ offset: 5 }">
+        <!-- <a-form-model-item :wrapper-col="{ offset: 5 }">
           <a-button type="primary" @click="onProcess"> {{ $t('handleroadsintheevent') }} </a-button>
           <a-button type="primary" style="margin-left: 20px" @click="onRestore">
             {{ $t('resetroadsintheevent') }}
           </a-button>
-        </a-form-model-item>
-        <a-form-model-item
-          ref="routeCoordinateStart"
-          :label="$t('startcoordinate')"
-          prop="routeCoordinateStart"
-          has-feedback
-        >
+        </a-form-model-item> -->
+        <a-form-model-item ref="routeCoordinateStart" :label="$t('startcoordinate')" prop="routeCoordinateStart"
+          has-feedback>
           <a-input-group compact>
-            <a-input-number
-              v-model="form.RouteCoordinateStartX"
-              style="width: 150px; text-align: center"
-              :placeholder="$t('xcoordinate')"
-            />
-            <a-input
-              style="width: 30px; border-left: 0; pointer-events: none; backgroundcolor: #fff"
-              placeholder=","
-              disabled
-            />
-            <a-input-number
-              v-model="form.RouteCoordinateStartY"
-              style="width: 150px; text-align: center; border-left: 0"
-              :placeholder="$t('ycoordinate')"
-            />
+            <a-input-number v-model="form.RouteCoordinateStartX" style="width: 150px; text-align: center"
+              :placeholder="$t('xcoordinate')" />
+            <a-input style="width: 30px; border-left: 0; pointer-events: none; backgroundcolor: #fff" placeholder=","
+              disabled />
+            <a-input-number v-model="form.RouteCoordinateStartY" style="width: 150px; text-align: center; border-left: 0"
+              :placeholder="$t('ycoordinate')" />
             <a-button type="primary" shape="circle" icon="environment" @click="routeStartSelect" />
           </a-input-group>
         </a-form-model-item>
         <a-form-model-item ref="routeCoordinateEnd" :label="$t('endcoordinate')" prop="routeCoordinateEnd" has-feedback>
           <a-input-group compact>
-            <a-input-number
-              v-model="form.RouteCoordinateEndX"
-              style="width: 150px; text-align: center"
-              :placeholder="$t('xcoordinate')"
-            />
-            <a-input
-              style="width: 30px; border-left: 0; pointer-events: none; backgroundcolor: #fff"
-              placeholder=","
-              disabled
-            />
-            <a-input-number
-              v-model="form.RouteCoordinateEndY"
-              style="width: 150px; text-align: center; border-left: 0"
-              :placeholder="$t('ycoordinate')"
-            />
+            <a-input-number v-model="form.RouteCoordinateEndX" style="width: 150px; text-align: center"
+              :placeholder="$t('xcoordinate')" />
+            <a-input style="width: 30px; border-left: 0; pointer-events: none; backgroundcolor: #fff" placeholder=","
+              disabled />
+            <a-input-number v-model="form.RouteCoordinateEndY" style="width: 150px; text-align: center; border-left: 0"
+              :placeholder="$t('ycoordinate')" />
             <a-button type="primary" shape="circle" icon="environment" @click="routeEndSelect" />
           </a-input-group>
         </a-form-model-item>
@@ -82,74 +47,48 @@
             <a-radio :style="radioStyle" :value="3"> {{ $t('roadprioritypreference') }} </a-radio>
           </a-radio-group>
         </a-form-model-item>
-        <a-form-model-item ref="inputMaxSpeed" :label="$t('expectedmaxspeed')" prop="inputMaxSpeed" has-feedback>
+        <!-- <a-form-model-item ref="inputMaxSpeed" :label="$t('expectedmaxspeed')" prop="inputMaxSpeed" has-feedback>
           <a-input-group compact>
-            <a-input-number
-              v-model="form.inputMaxSpeed"
-              style="width: 260px; text-align: center;"
-              v-decorator="['inputMaxSpeed']"
-              :allowClear="true"
-              :placeholder="$t('pleaseinputexpectedmaxspeed')"
-            >
+            <a-input-number v-model="form.inputMaxSpeed" style="width: 260px; text-align: center;"
+              v-decorator="['inputMaxSpeed']" :allowClear="true" :placeholder="$t('pleaseinputexpectedmaxspeed')">
             </a-input-number>
-            <a-input
-              style="width: 80px; border-left: 0; pointer-events: none; backgroundcolor: transparent"
-              placeholder="Km/h"
-              readOnly
-            />
+            <a-input style="width: 80px; border-left: 0; pointer-events: none; backgroundcolor: transparent"
+              placeholder="Km/h" readOnly />
           </a-input-group>
-        </a-form-model-item>
+        </a-form-model-item> -->
         <a-form-model-item ref="outputDisatance" :label="$t('pathdistance')" prop="outputDisatance" has-feedback>
           <a-input-group compact>
-            <a-input
-              v-model="form.outputDisatance"
-              v-decorator="['outputDisatance']"
-              readOnly
-              :allowClear="true"
-              style="width: 260px"
-            >
+            <a-input v-model="form.outputDisatance" v-decorator="['outputDisatance']" readOnly :allowClear="true"
+              style="width: 260px">
             </a-input>
-            <a-input
-              style="width: 80px; border-left: 0; pointer-events: none; backgroundcolor: transparent"
-              placeholder="Km"
-              readOnly
-            />
+            <a-input style="width: 80px; border-left: 0; pointer-events: none; backgroundcolor: transparent"
+              placeholder="Km" readOnly />
           </a-input-group>
         </a-form-model-item>
         <a-form-model-item ref="outputTime" :label="$t('pathtime')" prop="outputTime" has-feedback>
           <a-input-group compact>
-            <a-input
-              v-model="form.outputTime"
-              v-decorator="['outputTime']"
-              readOnly
-              :allowClear="true"
-              style="width: 260px"
-            >
+            <a-input v-model="form.outputTime" v-decorator="['outputTime']" readOnly :allowClear="true"
+              style="width: 260px">
             </a-input>
-            <a-input
-              style="width: 80px; border-left: 0; pointer-events: none; backgroundcolor: transparent"
-              placeholder="min"
-              readOnly
-            />
+            <a-input style="width: 80px; border-left: 0; pointer-events: none; backgroundcolor: transparent"
+              placeholder="min" readOnly />
           </a-input-group>
         </a-form-model-item>
         <a-form-model-item :wrapper-col="{ span: 14, offset: 10 }">
           <a-button style="margin-left: 10px" @click="resetForm"> {{ $t('reset') }} </a-button>
         </a-form-model-item>
       </a-form-model>
-      <div
-        :style="{
-          position: 'absolute',
-          right: 0,
-          bottom: '55px',
-          width: '100%',
-          borderTop: '1px solid #e9e9e9',
-          padding: '10px 16px',
-          background: '#fff',
-          textAlign: 'right',
-          zIndex: 1,
-        }"
-      >
+      <div :style="{
+        position: 'absolute',
+        right: 0,
+        bottom: '55px',
+        width: '100%',
+        borderTop: '1px solid #e9e9e9',
+        padding: '10px 16px',
+        background: '#fff',
+        textAlign: 'right',
+        zIndex: 1,
+      }">
         <a-button :style="{ marginRight: '8px' }" @click="onClose"> {{ $t('cancel') }} </a-button>
         <a-button type="primary" @click="onSubmit"> {{ $t('submit') }} </a-button>
       </div>
@@ -199,7 +138,7 @@ export default {
   computed: {
     rules() {
       return {
-        inputMaxSpeed: [{ required: true, message: this.$t('pleaseinputexpectedmaxspeed'), trigger: 'blur' }],
+        // inputMaxSpeed: [{ required: true, message: this.$t('pleaseinputexpectedmaxspeed'), trigger: 'blur' }],
         disasterEvent: [{ required: true, message: this.$t('pleaseselectdisasterevent'), trigger: 'blur' }],
       }
     },
@@ -292,7 +231,7 @@ export default {
         if (valid) {
           let url =
             baseURL.baseURL +
-            'getpgrouting?' +
+            'getroute?' +
             'kind=' +
             this.radioValue +
             '&x1=' +
@@ -303,8 +242,8 @@ export default {
             this.form.RouteCoordinateEndX +
             '&y2=' +
             this.form.RouteCoordinateEndY +
-            '&speed=' +
-            this.form.inputMaxSpeed
+            '&disasterid=' +
+            this.disasterID
           axios.get(url).then(
             (response) => {
               console.log('提交请求成功！')
@@ -323,10 +262,7 @@ export default {
                 viewer.entities.remove(polylineTmp)
                 var polyline = new Cesium.PolylineGraphics({
                   positions: Cesium.Cartesian3.fromDegreesArray(
-                    response.data.geom
-                      .substring(11, response.data.geom.length - 1)
-                      .replaceAll(' ', ',')
-                      .split(',')
+                    response.data.geom.split(',')
                   ),
                   width: 10,
                   material: Cesium.Color.RED,
