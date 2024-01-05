@@ -69,14 +69,14 @@
             <a-menu-item key="setting:33" @click="Flood0722"> {{ $t('floodrangeof0722') }} </a-menu-item>
             <a-menu-item key="setting:34" @click="AffectedPOI"> {{ $t('poiaffectedbydisasters') }} </a-menu-item>
           </a-sub-menu>
-          <a-sub-menu>
+          <!-- <a-sub-menu>
             <span slot="title">
               {{ $t('sichuandistrict') }}
             </span>
             <a-menu-item key="setting:35" @click="Flood0720"> {{ $t('floodrangeof0720') }} </a-menu-item>
             <a-menu-item key="setting:36" @click="Flood0722"> {{ $t('floodrangeof0722') }} </a-menu-item>
             <a-menu-item key="setting:37" @click="AffectedPOI"> {{ $t('poiaffectedbydisasters') }} </a-menu-item>
-          </a-sub-menu>
+          </a-sub-menu> -->
         </a-sub-menu>
         <a-sub-menu>
           <span slot="title" class="submenu-title-wrapper">
