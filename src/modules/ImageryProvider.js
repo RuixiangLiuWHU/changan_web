@@ -20,6 +20,15 @@ export let HenanRoadNetwork = new Cesium.WebMapServiceImageryProvider({
     transparent: true,
   }
 });
+export let roadmap = new Cesium.WebMapServiceImageryProvider({
+  url: 'http://125.220.153.25:8090/geoserver/wms',
+  layers: 'roadmap:roadmap',
+  parameters: {
+    service: 'WMS',
+    format: 'image/png',
+    transparent: true,
+  }
+});
 export let POI_Edu = new Cesium.WebMapServiceImageryProvider({
   url: 'http://125.220.153.25:8090/geoserver/wms',
   layers: 'poi_edu',

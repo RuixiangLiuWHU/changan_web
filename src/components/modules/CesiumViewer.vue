@@ -35,8 +35,13 @@
             <a-menu-item key="setting:1" @click="tiandimap"> {{ $t('tiandimap') }} </a-menu-item>
             <a-menu-item key="setting:2" @click="tiandimapannotation">{{ $t('tiandimapannotation') }} </a-menu-item>
           </a-menu-item-group>
-          <a-menu-item key="setting:10" @click="HenanGPM"> {{ $t('precipitation') }} </a-menu-item>
-          <a-menu-item key="setting:11" @click="Roadnetwork"> {{ $t('henanroadnetwork') }} </a-menu-item>
+          <a-menu-item key="setting:10">
+            <a href="http://125.220.153.25:8097/changan/getallroads" target="_blank" rel="noopener noreferrer">
+              {{ $t('roadmap') }}
+            </a>
+          </a-menu-item>
+          <a-menu-item key="setting:11" @click="HenanGPM"> {{ $t('precipitation') }} </a-menu-item>
+          <a-menu-item key="setting:12" @click="Roadnetwork"> {{ $t('henanroadnetwork') }} </a-menu-item>
           <a-menu-item-group :title="$t('datapoi')">
             <a-menu-item key="setting:111" @click="EduPOI"> {{ $t('educationpoi') }} </a-menu-item>
             <a-menu-item key="setting:112" @click="TransPOI">{{ $t('transportationpoi') }} </a-menu-item>
@@ -127,6 +132,7 @@ import {
   POI_View,
   POI_Medical,
   POI_Adm,
+  roadmap,
   flood0720,
   flood0722,
   GDRoad,
@@ -379,6 +385,13 @@ export default {
       if (node.data.id == 28) {
         for (var i = this.viewer.imageryLayers.length - 1; i >= 0; i--) {
           if (this.viewer.imageryLayers._layers[i].imageryProvider._layers == 'henan_osm') {
+            this.viewer.imageryLayers.remove(this.viewer.imageryLayers._layers[i])
+          }
+        }
+      }
+      if (node.data.id == 29) {
+        for (var i = this.viewer.imageryLayers.length - 1; i >= 0; i--) {
+          if (this.viewer.imageryLayers._layers[i].imageryProvider._layers == 'roadmap') {
             this.viewer.imageryLayers.remove(this.viewer.imageryLayers._layers[i])
           }
         }

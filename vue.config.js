@@ -19,10 +19,10 @@ const resolve = dir => {
 module.exports = {
   assetsDir: 'static',
   parallel: false,
-  publicPath: './',//部署应用包时的基本 URL
+  publicPath: './', //部署应用包时的基本 URL
   lintOnSave: undefined,
-  productionSourceMap: false,// 打包时不生成.map文件
-  devServer: {//配置服务器
+  productionSourceMap: false, // 打包时不生成.map文件
+  devServer: { //配置服务器
     host: "localhost",
     port: 3000,
     proxy: {
@@ -37,6 +37,20 @@ module.exports = {
         onProxyReq(proxyReq) {
           if (proxyReq.getHeader("origin")) {
             proxyReq.setHeader("origin", 'http://125.220.153.25:8085')
+          }
+        }
+      },
+      '/sispet8090': {
+        target: 'http://125.220.153.25:8090',
+        // 允许跨域
+        changeOrigin: true,
+        ws: true,
+        pathRewrite: {
+          '^/sispet8090': ''
+        },
+        onProxyReq(proxyReq) {
+          if (proxyReq.getHeader("origin")) {
+            proxyReq.setHeader("origin", 'http://125.220.153.25:8090')
           }
         }
       },
@@ -102,7 +116,7 @@ module.exports = {
       }))
     }
   },
-  configureWebpack: {//配置Webpack
+  configureWebpack: { //配置Webpack
     // devtool: 'source-map',//在浏览器中显示vue源码用来调试
     output: {
       sourcePrefix: ' '
@@ -118,10 +132,22 @@ module.exports = {
       }
     },
     plugins: [
-      new CopyWebpackPlugin([{ from: path.join(cesiumSource, cesiumWorkers), to: 'Workers' }]),
-      new CopyWebpackPlugin([{ from: path.join(cesiumSource, 'Assets'), to: 'Assets' }]),
-      new CopyWebpackPlugin([{ from: path.join(cesiumSource, 'Widgets'), to: 'Widgets' }]),
-      new CopyWebpackPlugin([{ from: path.join(cesiumSource, '../Build/Cesium/ThirdParty'), to: 'ThirdParty' }]),
+      new CopyWebpackPlugin([{
+        from: path.join(cesiumSource, cesiumWorkers),
+        to: 'Workers'
+      }]),
+      new CopyWebpackPlugin([{
+        from: path.join(cesiumSource, 'Assets'),
+        to: 'Assets'
+      }]),
+      new CopyWebpackPlugin([{
+        from: path.join(cesiumSource, 'Widgets'),
+        to: 'Widgets'
+      }]),
+      new CopyWebpackPlugin([{
+        from: path.join(cesiumSource, '../Build/Cesium/ThirdParty'),
+        to: 'ThirdParty'
+      }]),
       new webpack.DefinePlugin({
         CESIUM_BASE_URL: JSON.stringify('./')
       })
