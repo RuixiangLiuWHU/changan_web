@@ -35,11 +35,15 @@
             <a-menu-item key="setting:1" @click="tiandimap"> {{ $t('tiandimap') }} </a-menu-item>
             <a-menu-item key="setting:2" @click="tiandimapannotation">{{ $t('tiandimapannotation') }} </a-menu-item>
           </a-menu-item-group>
-          <a-menu-item key="setting:10">
-            <a href="http://125.220.153.25:8097/changan/getallroads" target="_blank" rel="noopener noreferrer">
-              {{ $t('roadmap') }}
-            </a>
-          </a-menu-item>
+          <a-menu-item-group :title="$t('roaddownload')">
+            <a-menu-item key="setting:10">
+              <a href="http://125.220.153.25:8097/changan/getallroads" target="_blank" rel="noopener noreferrer">
+                {{ $t('roadmap') }}
+              </a>
+            </a-menu-item>
+            <a-menu-item key="setting:100" @click="RoadByName"> {{ $t('roadbyname') }} </a-menu-item>
+            <a-menu-item key="setting:101" @click="RoadByExtent"> {{ $t('roadbyextent') }} </a-menu-item>
+          </a-menu-item-group>
           <a-menu-item key="setting:11" @click="HenanGPM"> {{ $t('precipitation') }} </a-menu-item>
           <a-menu-item key="setting:12" @click="Roadnetwork"> {{ $t('henanroadnetwork') }} </a-menu-item>
           <a-menu-item-group :title="$t('datapoi')">
@@ -99,6 +103,8 @@
     <event-form-text ref="eventTextChild" @update="rightEventTextChanged"></event-form-text>
     <route ref="routeChild" @update="rightRouteChanged"></route>
     <affected-p-o-i ref="affectedPOIChild" @update="rightAffectedPOIChanged"></affected-p-o-i>
+    <road-by-name ref="roadByNameChild" @update="rightRoadByNameChanged"></road-by-name>
+    <road-by-extent ref="roadByExtentChild" @update="rightRoadByExtentChanged"></road-by-extent>
   </div>
 </template>
 
@@ -119,6 +125,8 @@ import EventForm from './EventForm.vue'
 import EventFormText from './EventFormText.vue'
 import Route from './Route.vue'
 import AffectedPOI from './AffectedPOI.vue'
+import RoadByName from './RoadByName.vue'
+import RoadByExtent from './RoadByExtent.vue'
 import SampleQuery from './SampleQuery.vue'
 import ImageLoader from '../../modules/ImageLoader'
 import shapeDrawer from '../../modules/shapeDrawer'
@@ -190,6 +198,8 @@ export default {
     EventFormText,
     Route,
     AffectedPOI,
+    RoadByName,
+    RoadByExtent,
   },
   computed: {
     Anno: function () {
@@ -890,6 +900,22 @@ export default {
         this.viewer.imageryLayers.addImageryProvider(POI_Adm, 3)
       }
     },
+    RoadByName() {
+      if (this.drawerNum == 0) {
+        this.$refs.roadByNameChild.showDrawer()
+        this.right = 600
+        this.$bus.$emit('viewer', this.viewer)
+      }
+      this.drawerNum = 1
+    },
+    RoadByExtent() {
+      if (this.drawerNum == 0) {
+        this.$refs.roadByExtentChild.showDrawer()
+        this.right = 600
+        this.$bus.$emit('viewer', this.viewer)
+      }
+      this.drawerNum = 1
+    },
     AffectedPOI() {
       if (this.drawerNum == 0) {
         this.$refs.affectedPOIChild.showDrawer()
@@ -947,6 +973,14 @@ export default {
       this.drawerNum = 1
     },
     rightAffectedPOIChanged(right) {
+      this.right = right
+      this.drawerNum = 0
+    },
+    rightRoadByNameChanged(right) {
+      this.right = right
+      this.drawerNum = 0
+    },
+    rightRoadByExtentChanged(right) {
       this.right = right
       this.drawerNum = 0
     },
