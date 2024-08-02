@@ -1,6 +1,11 @@
 <template>
   <div class="div_content" :style="'width:calc(100vw - ' + right + 'px);'">
     <div class="div_cesium" :id="random" :style="'height:' + screenHeight + 'px'"></div>
+    <div class="copyright">
+      <div style="width: 1000px; height: 30px; float: left; text-align: center; margin-top: -6px">
+        <font size="5" color="white">{{ $t('copyright') }}</font>
+      </div>
+    </div>
     <div class="latlng_show">
       <div style="width: 150px; height: 30px; float: left; margin-top: -6px">
         <font size="3" color="white">{{ $t('longtitude') }}<span id="longitude_show"></span>°</font>
@@ -1131,6 +1136,14 @@ export default {
   border-radius: 100px;
   background-color: rgba(112, 128, 144, 0.3);
   padding: 10px;
+}
+
+.copyright {
+  position: absolute;
+  bottom: 25px;
+  text-align: center;
+  z-index: 1;
+  left: 450px;
 }
 
 .div_buttonfather {

@@ -3,7 +3,7 @@
 export default {
   lang: '中文',
   'Anno_layer': 'cia_w',
-  title: '应急交通时空信息服务系统',
+  title: '应急交通时空信息服务系统V1.0',
   home: '主页',
   disastercase: '灾害案例',
   eventList: '事件表',
@@ -11,6 +11,7 @@ export default {
   about: '关于',
   login: '登录',
   register: '注册',
+  copyright:'Copyright@武汉大学遥感信息工程学院',
   longtitude: '经度：',
   latitude: '纬度：',
   altitude: '视角高：',

@@ -1,8 +1,8 @@
 <!--
  * @Author: your name
  * @Date: 2021-09-26 15:16:45
- * @LastEditTime: 2022-06-10 16:48:33
- * @LastEditors: lrx lrx_lucky@whu.edu.cn
+ * @LastEditTime: 2024-08-02 09:46:52
+ * @LastEditors: RuixiangLiuWHU lrx_lucky@whu.edu.cn
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \Changan University\src\components\modules\HeadNav.vue
 -->
@@ -50,7 +50,7 @@
 }
 .div_nav {
   position: absolute;
-  left: 750px;
+  left: 800px;
   top: 3px;
 }
 .div_text {
