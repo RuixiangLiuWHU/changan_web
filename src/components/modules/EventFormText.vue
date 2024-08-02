@@ -311,7 +311,7 @@ export default {
         this.roadnames = []
         return
       }
-      let url = baseURL.baseURL + 'getlevenshtein?str1=' + key
+      let url = baseURL.baseURL + 'getlevenshtein?str=' + key
       axios.get(url).then(
         (response) => {
           const { searchRoad } = this
@@ -427,7 +427,7 @@ export default {
         this.poinames = []
         return
       }
-      let url = baseURL.baseURL + 'getlevenshteinpoi?str1=' + key
+      let url = baseURL.baseURL + 'getlevenshteinpoi?str=' + key
       axios.get(url).then(
         (response) => {
           const { searchPOI } = this
